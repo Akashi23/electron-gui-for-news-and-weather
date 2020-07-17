@@ -20,6 +20,7 @@
     "electron": "^9.1.0"
   },
   "dependencies": {
+    "@popperjs/core": "^2.4.4",
     "bootstrap": "^4.5.0"
   }
 }

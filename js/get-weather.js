@@ -16,7 +16,7 @@ $(document).ready(function(){
     }, 500);
   
     var showCelsius = true;
-    $('.btn').on('click', function(){
+    $('.btn-mario').on('click', function(){
       marioJump();
       showCelsius = convertTemp(temperature, showCelsius);
     });
@@ -355,4 +355,3 @@ $(document).ready(function(){
         $(".box-temperature").css('background-color', '#828C8F');
       }
   }
-  

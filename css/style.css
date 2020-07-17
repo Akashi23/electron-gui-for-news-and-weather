@@ -2,4 +2,9 @@ body{
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     margin-top: 20px;
+    background-color: blueviolet;
+}
+
+.white-text{
+    color: white;
 }
