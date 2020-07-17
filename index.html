@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <meta http-equiv="Content-Security-Policy" content="img-src 'self' data:; default-src 'self'; script-src 'self'">
+    <meta http-equiv="X-Content-Security-Policy" content="img-src 'self' data:; default-src 'self'; script-src 'self'">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="./css/style.css" />
@@ -20,24 +20,20 @@
           <div class="container ml-3">
           <form class="form-inline my-2 my-lg-0 mr-sm-2">
             <div class="input-group mb-2 form-row">
-              <div class="col-7">
+              <div class="col-6 mr-sm-2">
                 <input class="form-control" type="search" placeholder="Search News" aria-label="Search">
               </div>
-            <div class="col-3">
+            <div class="col-3 mr-sm-3">
                 <div class="input-group-prepend">
-                  <div class="dropdown">
-                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <span class="white-text">Filter</span>
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                  </div>
+                  <select class="custom-select">
+                    <option selected>Choose...</option>
+                    <option>One</option>
+                    <option>Two</option>
+                    <option>Three</option>
+                  </select>
                 </div>
               </div>
-              <div class="col-2">
+              <div class="col-2 mr-sm-2">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
               </div>
             </div>
