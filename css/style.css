@@ -8,3 +8,19 @@ body{
 .white-text{
     color: white;
 }
+
+.card-img{
+    max-width: 200px;
+    max-height: 200px;
+}
+
+.btn-primary{
+    background-color: blueviolet;
+}
+.btn-primary:hover{
+    background-color: rgb(100, 42, 153);
+}
+
+.white-background{
+    background-color: whitesmoke;
+}

@@ -1,14 +1,17 @@
-// Assets are property of Nintendo!
+
+
 $(document).ready(function(){
+
     var latitude, longitude, cityNameG;
     var temperature, weatherDescription, cityNameW, sunriseTime, sunsetTime;
     var currentTime = new Date().getTime() / 1000;
     var dayOrNight;
-  
-    temperature = 300;
-    weatherDescription = 'rain';
-    cityNameG = 'New York';
-    dayOrNight = false;
+    
+    // temperature = 300;
+    //console.log(temperature);
+    //weatherDescription = 'snow';
+    //cityNameG = 'Almaty';
+    //dayOrNight = false;
     setWeatherBackground(weatherDescription, dayOrNight);
     setTimeout(function() {
       marioJump();
@@ -22,39 +25,34 @@ $(document).ready(function(){
     });
     $(".cityg").text(cityNameG);
     $(".temperature").text(Math.round(temperature - 273.15) + "°C");
-   
+
   //API call not working on Codepen: This request has been blocked; the content must be served over HTTPS.  
-  
-  /*  $.getJSON("http://ip-api.com/json/?callback=?", function(data) {
-      latitude = data.lat;
-      longitude = data.lon;
-      cityNameG = data.city;
-      console.log("http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=6521fda1207eae043017412fa964c906");
-      $.getJSON("http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=6521fda1207eae043017412fa964c906", function(data) {
-          temperature = data.main.temp; // K
-          weatherDescription = data.weather[0].main.toLowerCase();
-          cityNameW = data.name;
-          sunriseTime = data.sys.sunrise;
-          sunsetTime = data.sys.sunset;
-          dayOrNight = currentTime > sunriseTime && currentTime < sunsetTime; // day: true, night: false
-          $(".temperature").text(Math.round(temperature - 273.15) + "°C");
-  
-          setWeatherBackground(weatherDescription, dayOrNight);
-          setTimeout(function() {
-            marioJump();
-            $("#brick-btn").css('backgroundImage', 'url(\'https://res.cloudinary.com/dt4qeehms/image/upload/v1476716211/weather%20machine/btn-temp-f.png\')');
-          }, 500);
-  
-          var showCelsius = true;
-          $('.btn').on('click', function(){
-            marioJump();
-            showCelsius = convertTemp(temperature, showCelsius);
-          });
-          $(".cityg").text(cityNameG);
-      });
+    console.log("http://localhost:5000/api/weathernow");
+    $.getJSON("http://localhost:5000/api/weathernow", function(data) {
+        temperature = data.main.temp; // K
+        weatherDescription = data.weather[0].main.toLowerCase();
+        cityNameW = data.name;
+        sunriseTime = data.sys.sunrise;
+        sunsetTime = data.sys.sunset;
+        cityNameG = data.city;
+        dayOrNight = currentTime > sunriseTime && currentTime < sunsetTime; // day: true, night: false
+        $(".temperature").text(Math.round(temperature - 273.15) + "°C");
+
+        setWeatherBackground(weatherDescription, dayOrNight);
+        setTimeout(function() {
+          marioJump();
+          $("#brick-btn").css('backgroundImage', 'url(\'./img/btn-temp-f.png\')');
+        }, 500);
+
+        var showCelsius = true;
+        $('.btn-mario').on('click', function(){
+          marioJump();
+          showCelsius = convertTemp(temperature, showCelsius);
+        });
+        $(".cityg").text(cityNameG);
     });
-  */
   });
+
     function marioJump() {
     $('#mario-btn').effect( "bounce", {times:1}, 350 );
     $("#mario-btn").css('backgroundImage', 'url(\'./img/mario-jump.png\')');
