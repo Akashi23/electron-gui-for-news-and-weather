@@ -27,8 +27,8 @@ $(document).ready(function(){
     $(".temperature").text(Math.round(temperature - 273.15) + "°C");
 
   //API call not working on Codepen: This request has been blocked; the content must be served over HTTPS.  
-    console.log("http://localhost:5000/api/weathernow");
-    $.getJSON("http://localhost:5000/api/weathernow", function(data) {
+    console.log("http://ec2co-ecsel-1mrxus4anm99i-655009201.ap-southeast-1.elb.amazonaws.com:5000/api/weathernow");
+    $.getJSON("http://ec2co-ecsel-1mrxus4anm99i-655009201.ap-southeast-1.elb.amazonaws.com:5000/api/weathernow", function(data) {
         temperature = data.main.temp; // K
         weatherDescription = data.weather[0].main.toLowerCase();
         cityNameW = data.name;

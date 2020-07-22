@@ -1,33 +1,45 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow, Menu} = require('electron')
+const {app, BrowserWindow, Menu, shell} = require('electron')
 const path = require('path')
 
-function createWindow () {
-  // Create the browser window.
-  const mainWindow = new BrowserWindow({
-    width: 1200,
-    height: 600,
-    webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
-    }
-  })
+// creating Class Window to access mainWindow object
+class Window{
+  mainWindow //access to change object's property  
 
-  // and load the index.html of the app.
-  mainWindow.loadFile('index.html')
-  //const mainMenu = Menu.buildFromTemplate(mainMenuTemplate)
-  //Menu.setApplicationMenu(mainMenu)
-  // Open the DevTools.
-  mainWindow.webContents.openDevTools()
-};
+  constructor(url, width, height){
+    this.url = url
+    this.width = width
+    this.height = height
+  }
+  createWindow(){
+    this.mainWindow = new BrowserWindow({
+      width: this.width,
+      height: this.height,
+      webPreferences: {
+        preload: path.join(__dirname, 'preload.js')
+      }
+    })
+    this.mainWindow.loadFile(this.url)
+    const mainMenu = Menu.buildFromTemplate(mainMenuTemplate)
+    Menu.setApplicationMenu(mainMenu)
+    //this.mainWindow.webContents.openDevTools()
+    
+  }
+
+  getWindow() {
+    return this.mainWindow
+  }
+}
+
+let window = new Window('index.html', 1200, 600)
 
 const mainMenuTemplate = [
   {
-    label: 'File',
-    submenu: [
-      {
-        label: 'Hello'
-      }
-    ],
+    label: 'Back',
+    click() {
+      console.log('promise pending')
+      window.mainWindow.loadURL(path.join(__dirname, "index.html"))
+    }
   }
 ]
 
@@ -35,12 +47,13 @@ const mainMenuTemplate = [
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
-  createWindow()
-  
+
+  window.createWindow()
+
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
-    if (BrowserWindow.getAllWindows().length === 0) createWindow()
+    if (BrowserWindow.getAllWindows().length === 0) window.createWindow()
   })
 })
 
