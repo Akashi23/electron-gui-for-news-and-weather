@@ -1,4 +1,4 @@
-# electronjs project
+# electronjs with news and weather API 
 
 **Clone and run Electron in action.**
 
